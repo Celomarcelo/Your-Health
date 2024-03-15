@@ -148,3 +148,12 @@ def meal_plan(objective):
         return ('To maintain your weight, experts recommend consuming a balanced diet."Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans, tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds."')
     else:
         return ('To maintain your weight, experts recommend consuming a balanced diet. “Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.')
+ 
+recommendation = meal_plan(objective)
+   
+#display print statments 
+print("Diet plan:")
+print(f"Daily caloric needs: {calorie_need:.3f} cal")
+print("Macronutrient distribution:")
+print("Meal plan:")
+print(recommendation)
