@@ -82,3 +82,17 @@ def validate_activity_level(activity_level):
 
 while activity_level is None:
     activity_level = validate_activity_level(input("Enter your activity level (sedentary, light, moderate, active, very active): "))
+
+objective = input("Enter your goal (weight loss, muscle mass gain, maintenance): ").lower()
+def validate_objective(objective):
+    """
+    Function to validate objective
+    """
+    valid_objectives = ['weight loss', 'muscle mass gain', 'maintenance']
+    if objective.lower() not in valid_objectives:
+        print("Invalid input for goal. Please choose from: weight loss, muscle mass gain, maintenance.")
+        return None
+    return objective.lower()
+
+while objective is None:
+    objective = validate_objective(input("Enter your goal (weight loss, muscle mass gain, maintenance): "))
