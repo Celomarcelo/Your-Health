@@ -20,6 +20,18 @@ def calculate_caloric_needs(age, weight, height, gender, activity_level):
     
     return calorie_need
 
+def macronutrient_distribution(objective):
+    """
+    Function that calculates macronutrients and defines the goal
+    """
+    if objective == 'weight loss':
+        return {'proteins': 0.3, 'carbohydrates': 0.4, 'fats': 0.3}
+    elif objective == 'muscle mass gain':
+        return {'proteins': 0.4, 'carbohydrates': 0.4, 'fats': 0.2}
+    else:
+        return {'proteins': 0.3, 'carbohydrates': 0.5, 'fats': 0.2}
+
+# Collecting user information
 age = int(input("Enter your age: "))
 def validate_age(age):
     """
