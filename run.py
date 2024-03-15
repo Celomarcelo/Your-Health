@@ -125,3 +125,26 @@ def validate_objective(objective):
 
 while objective is None:
     objective = validate_objective(input("Enter your goal (weight loss, muscle mass gain, maintenance): "))
+    
+# Calculating calorie needs
+calorie_need = calculate_caloric_needs(age, weight, height, gender, activity_level)
+
+def meal_plan(objective):
+    """
+    function that shows the eating plan according to the objective
+    """
+    if objective == 'weight loss':
+        return ('To lose weight, you can follow a diet based on:\n'
+                'Low-calorie fruits, such as strawberries, tangerines, kiwi, pears, apples, plum melons, watermelons, oranges and pineapple\n'
+                'Vegetables, such as zucchini, cucumber, lettuce, tomato, cabbage, kale, broccoli and cauliflower\n'
+                'Whole grains, such as brown rice, whole wheat pasta, whole grain bread and oats\n'
+                'Lean proteins, such as chicken, fish, seafood, eggs and tofu\n'
+                'Low-fat dairy products, such as skimmed milk, low-fat yogurt and white cheeses\n'
+                'Vegetable drinks, such as soy, oat and rice drinks\n'
+                'Healthy fats in moderation, such as olive oil, Brazil nuts, almonds and walnuts\n'
+                'Legumes, such as beans, lentils, chickpeas and soybeans\n'
+                'Natural seasonings and condiments, such as rosemary, vinegar, parsley, black pepper and oregano.')
+    elif objective == 'muscle mass gain':
+        return ('To maintain your weight, experts recommend consuming a balanced diet."Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans, tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds."')
+    else:
+        return ('To maintain your weight, experts recommend consuming a balanced diet. “Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.')
