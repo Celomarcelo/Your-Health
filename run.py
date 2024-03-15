@@ -2,6 +2,13 @@ def calculate_caloric_needs(age, weight, height, gender, activity_level):
     """
     Function that calculates calories like the Harris-Benedict Equation
     """
+    if gender == 'M':
+        calorie_need = 66.47 + (13.75 * weight) + (5.00 * height) - (6.76 * age)
+    else:
+        calorie_need = 655.1 + (9.56 * weight) + (1.85 * height) - (4.68 * age)
+    
+    
+    return calorie_need
 
 age = int(input("Enter your age: "))
 def validate_age(age):
