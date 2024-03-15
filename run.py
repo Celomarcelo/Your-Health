@@ -56,4 +56,29 @@ while height is None:
     height = validate_height(input("Enter your height in meters: "))
 
 gender = input("Enter 'M' for male or 'F' for female: ").upper()
+def validate_gender(gender):
+    """
+    Function to validate gender
+    """
+    if gender.upper() not in ['M', 'F']:
+        print("Invalid input for gender. Please enter 'M' for male or 'F' for female.")
+        return None
+    return gender.upper()
+
+while gender is None:
+    gender = validate_gender(input("Enter 'M' for male or 'F' for female: "))
+    
+    
 activity_level = input("Enter your activity level (sedentary, light, moderate, active, very active): ").lower()
+def validate_activity_level(activity_level):
+    """
+    Function to validate activity level
+    """
+    valid_levels = ['sedentary', 'light', 'moderate', 'active', 'very active']
+    if activity_level.lower() not in valid_levels:
+        print("Invalid input for activity level. Please choose from: sedentary, light, moderate, active, very active.")
+        return None
+    return activity_level.lower()
+
+while activity_level is None:
+    activity_level = validate_activity_level(input("Enter your activity level (sedentary, light, moderate, active, very active): "))
