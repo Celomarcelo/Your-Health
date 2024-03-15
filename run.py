@@ -16,6 +16,9 @@ def validate_age(age):
     except ValueError:
         print("Invalid input for age. Please enter a valid integer.")
         return None
+
+while age is None:
+    age = validate_age(input("Enter your age: "))
     
 weight = float(input("Enter your weight in kg: "))
 height = float(input("Enter your height in meters: "))
