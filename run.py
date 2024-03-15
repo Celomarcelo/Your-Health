@@ -21,6 +21,22 @@ while age is None:
     age = validate_age(input("Enter your age: "))
     
 weight = float(input("Enter your weight in kg: "))
+def validate_weight(weight):
+    """
+    Function to validate weight
+    """
+    try:
+        weight = float(weight)
+        if 30 <= weight <= 200:
+            raise ValueError("Weight must be a positive number between 30 and 200.")
+        return weight
+    except ValueError:
+        print("Invalid input for weight. Please enter a valid number.")
+        return None
+
+while weight is None:
+    weight = validate_weight(input("Enter your weight in kg: "))
+    
 height = float(input("Enter your height in meters: "))
 gender = input("Enter 'M' for male or 'F' for female: ").upper()
 activity_level = input("Enter your activity level (sedentary, light, moderate, active, very active): ").lower()
