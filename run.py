@@ -7,6 +7,16 @@ def calculate_caloric_needs(age, weight, height, gender, activity_level):
     else:
         calorie_need = 655.1 + (9.56 * weight) + (1.85 * height) - (4.68 * age)
     
+    if activity_level == 'sedentary':
+        calorie_need *= 1.2
+    elif activity_level == 'light':
+        calorie_need *= 1.375
+    elif activity_level == 'moderate':
+        calorie_need *= 1.55
+    elif activity_level == 'active':
+        calorie_need *= 1.725
+    else:
+        calorie_need *= 1.9
     
     return calorie_need
 
