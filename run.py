@@ -156,6 +156,7 @@ recommendation = meal_plan(objective)
 #display print statments 
 print("Diet plan:")
 print(f"Daily caloric needs: {calorie_need:.3f} cal")
-print("Macronutrient distribution:")
+for key, value in macronutrient_distribution.items():
+    print(f"{key.capitalize()}: {value*100}%")
 print("Meal plan:")
 print(recommendation)
