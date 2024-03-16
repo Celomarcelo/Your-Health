@@ -32,40 +32,42 @@ def macronutrient_distribution(objective):
         return {'proteins': 0.3, 'carbohydrates': 0.5, 'fats': 0.2}
 
 # Collecting user information
-age = int(input("Enter your age: "))
 def validate_age(age):
     """
     Function to validate age
     """
     try:
         age = int(age)
-        if 18<= age <= 100:
-            raise ValueError("Age must be a positive integer between 18 and 100.")
+        if not (15 <= age <= 120): 
+            raise ValueError("Age must be a positive integer.")
         return age
     except ValueError:
-        print("Invalid input for age. Please enter a valid integer.")
+        print("Invalid input for age. Please enter a valid integer between 15 and 120.")
         return None
 
+age = None
 while age is None:
     age = validate_age(input("Enter your age: "))
+print(age)
     
-weight = float(input("Enter your weight in kg: "))
 def validate_weight(weight):
     """
     Function to validate weight
     """
     try:
         weight = float(weight)
-        if 30 <= weight <= 200:
-            raise ValueError("Weight must be a positive number between 30 and 200.")
+        if not (30 <= weight <= 200):
+            raise ValueError("Weight must be a positive number.")
         return weight
     except ValueError:
-        print("Invalid input for weight. Please enter a valid number.")
+        print("Invalid input for weight. Please enter a valid number between 30 and 200.")
         return None
 
+weight = None
 while weight is None:
     weight = validate_weight(input("Enter your weight in kg: "))
-    
+print(weight)
+
 def validate_height(height):
     """
     Function to validate height
@@ -82,8 +84,8 @@ def validate_height(height):
 height = None
 while height is None:
     height = validate_height(input("Enter your height in meters: "))
+print(height)
 
-gender = input("Enter 'M' for male or 'F' for female: ").upper()
 def validate_gender(gender):
     """
     Function to validate gender
@@ -93,11 +95,11 @@ def validate_gender(gender):
         return None
     return gender.upper()
 
+gender = None
 while gender is None:
-    gender = validate_gender(input("Enter 'M' for male or 'F' for female: "))
-    
-    
-activity_level = input("Enter your activity level (sedentary, light, moderate, active, very active): ").lower()
+    gender = validate_gender(input("Enter 'M' for male or 'F' for female: ").upper())
+print(gender)
+        
 def validate_activity_level(activity_level):
     """
     Function to validate activity level
@@ -108,10 +110,10 @@ def validate_activity_level(activity_level):
         return None
     return activity_level.lower()
 
+activity_level = None
 while activity_level is None:
     activity_level = validate_activity_level(input("Enter your activity level (sedentary, light, moderate, active, very active): "))
 
-objective = input("Enter your goal (weight loss, muscle mass gain, maintenance): ").lower()
 def validate_objective(objective):
     """
     Function to validate objective
@@ -122,8 +124,9 @@ def validate_objective(objective):
         return None
     return objective.lower()
 
+objective = None
 while objective is None:
-    objective = validate_objective(input("Enter your goal (weight loss, muscle mass gain, maintenance): "))
+    objective = validate_objective(input("Enter your goal (weight loss, muscle mass gain, maintenance): ").lower())
 
 # Calculating calorie needs
 calorie_need = calculate_caloric_needs(age, weight, height, gender, activity_level)
@@ -144,7 +147,7 @@ def meal_plan(objective):
                 'Legumes, such as beans, lentils, chickpeas and soybeans\n'
                 'Natural seasonings and condiments, such as rosemary, vinegar, parsley, black pepper and oregano.')
     elif objective == 'muscle mass gain':
-        return ('To maintain your weight, experts recommend consuming a balanced diet."Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans, tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds."')
+        return ('To gain muscle mass, experts recommend consuming a diet based on proteins."Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans, tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds."')
     else:
         return ('To maintain your weight, experts recommend consuming a balanced diet. “Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.')
  
