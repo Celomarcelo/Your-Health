@@ -13,6 +13,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('your-health-data')
 
+print('Your health\n'
+      'Calculate your diet according to your goal.')
+
 def calculate_caloric_needs(age, weight, height, gender, activity_level):
     """
     Function that calculates calories like the Harris-Benedict Equation
@@ -64,7 +67,7 @@ def validate_age(age):
 
 age = None
 while age is None:
-    age = validate_age(input("Enter your age:\n"))
+    age = validate_age(input("Enter your age:\n "))
     
 def validate_weight(weight):
     """
@@ -81,7 +84,7 @@ def validate_weight(weight):
 
 weight = None
 while weight is None:
-    weight = validate_weight(input("Enter your weight in kg:\n"))
+    weight = validate_weight(input("Enter your weight in kg:\n "))
 
 def validate_height(height):
     """
@@ -174,8 +177,11 @@ def update_your_health_worksheet(gender, age, objective):
  
 recommendation = meal_plan(objective)
 macronutrient_distribution_info = macronutrient_distribution(objective)
+full_gender = 'Male' if gender == 'M' else 'Female'
    
 #display print statments 
+print(f'According to the given values:\n'
+      f'Age:{age} Weight:{weight} Height:{height} Gender:{full_gender} Activity level:{activity_level}')
 print("Diet plan:")
 print(f"Daily caloric needs: {calorie_need:.3f} cal")
 for key, value in macronutrient_distribution_info.items():
