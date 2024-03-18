@@ -152,11 +152,12 @@ def meal_plan(objective):
         return ('To maintain your weight, experts recommend consuming a balanced diet. “Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.')
  
 recommendation = meal_plan(objective)
+macronutrient_distribution_info = macronutrient_distribution(objective)
    
 #display print statments 
 print("Diet plan:")
 print(f"Daily caloric needs: {calorie_need:.3f} cal")
-for key, value in macronutrient_distribution.items():
+for key, value in macronutrient_distribution_info.items():
     print(f"{key.capitalize()}: {value*100}%")
 print("Meal plan:")
 print(recommendation)
