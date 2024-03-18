@@ -2,6 +2,8 @@ def calculate_caloric_needs(age, weight, height, gender, activity_level):
     """
     Function that calculates calories like the Harris-Benedict Equation
     """
+    # Calculate calorie needs based on gender and activity level
+
     if gender == 'M':
         calorie_need = 66.47 + (13.75 * weight) + (5.00 * height) - (6.76 * age)
     else:
@@ -38,7 +40,7 @@ def validate_age(age):
     """
     try:
         age = int(age)
-        if not (15 <= age <= 120): 
+        if not (15 <= age <= 120):#check if the input is a number and a rational value
             raise ValueError("Age must be a positive integer.")
         return age
     except ValueError:
@@ -47,8 +49,7 @@ def validate_age(age):
 
 age = None
 while age is None:
-    age = validate_age(input("Enter your age: "))
-print(age)
+    age = validate_age(input("Enter your age:\n"))
     
 def validate_weight(weight):
     """
@@ -56,7 +57,7 @@ def validate_weight(weight):
     """
     try:
         weight = float(weight)
-        if not (30 <= weight <= 200):
+        if not (30 <= weight <= 200):#check if the input is a number and a rational value
             raise ValueError("Weight must be a positive number.")
         return weight
     except ValueError:
@@ -65,8 +66,7 @@ def validate_weight(weight):
 
 weight = None
 while weight is None:
-    weight = validate_weight(input("Enter your weight in kg: "))
-print(weight)
+    weight = validate_weight(input("Enter your weight in kg:\n"))
 
 def validate_height(height):
     """
@@ -74,7 +74,7 @@ def validate_height(height):
     """
     try:
         height = float(height.replace(',', '.'))
-        if not (1 <= height <= 2.5): 
+        if not (1 <= height <= 2.5): #check if the input is a number and a rational value, convert characters
             raise ValueError("Height must be a positive number between 1 and 2.5.")
         return height
     except ValueError:
@@ -83,50 +83,48 @@ def validate_height(height):
 
 height = None
 while height is None:
-    height = validate_height(input("Enter your height in meters: "))
-print(height)
+    height = validate_height(input("Enter your height in meters:\n "))
 
 def validate_gender(gender):
     """
     Function to validate gender
     """
-    if gender.upper() not in ['M', 'F']:
+    if gender.upper() not in ['M', 'F']:#check if the input is one of the given options
         print("Invalid input for gender. Please enter 'M' for male or 'F' for female.")
         return None
     return gender.upper()
 
 gender = None
 while gender is None:
-    gender = validate_gender(input("Enter 'M' for male or 'F' for female: ").upper())
-print(gender)
-        
+    gender = validate_gender(input("Enter 'M' for male or 'F' for female:\n ").upper())
+
 def validate_activity_level(activity_level):
     """
     Function to validate activity level
     """
     valid_levels = ['sedentary', 'light', 'moderate', 'active', 'very active']
-    if activity_level.lower() not in valid_levels:
+    if activity_level.lower() not in valid_levels:#check if the input is one of the given options
         print("Invalid input for activity level. Please choose from: sedentary, light, moderate, active, very active.")
         return None
     return activity_level.lower()
 
 activity_level = None
 while activity_level is None:
-    activity_level = validate_activity_level(input("Enter your activity level (sedentary, light, moderate, active, very active): "))
+    activity_level = validate_activity_level(input("Enter your activity level (sedentary, light, moderate, active, very active):\n "))
 
 def validate_objective(objective):
     """
     Function to validate objective
     """
     valid_objectives = ['weight loss', 'muscle mass gain', 'maintenance']
-    if objective.lower() not in valid_objectives:
+    if objective.lower() not in valid_objectives:#check if the input is one of the given options
         print("Invalid input for goal. Please choose from: weight loss, muscle mass gain, maintenance.")
         return None
     return objective.lower()
 
 objective = None
 while objective is None:
-    objective = validate_objective(input("Enter your goal (weight loss, muscle mass gain, maintenance): ").lower())
+    objective = validate_objective(input("Enter your goal (weight loss, muscle mass gain, maintenance):\n ").lower())
 
 # Calculating calorie needs
 calorie_need = calculate_caloric_needs(age, weight, height, gender, activity_level)
@@ -135,6 +133,7 @@ def meal_plan(objective):
     """
     function that shows the eating plan according to the objective
     """
+    # Generate meal plan based on the objective
     if objective == 'weight loss':
         return ('To lose weight, you can follow a diet based on:\n'
                 'Low-calorie fruits, such as strawberries, tangerines, kiwi, pears, apples, plum melons, watermelons, oranges and pineapple\n'
