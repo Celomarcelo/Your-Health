@@ -195,13 +195,35 @@ def count_gender(sheet, column_name):
         result = 'an equal number of men and women'
 
     return result
+
+def count_objective(sheet, column_name):
+    
+    column_data = sheet.col_values(sheet.find(column_name).col)
+
+
+    count_weight = column_data.count('weight loss')
+    count_muscle = column_data.count('muscle mass gain')
+    count_maintenace = column_data.count('maintenance')
+
+    if count_weight > count_muscle and count_weight > count_maintenace :
+        result = 'weight loss'
+    elif count_weight < count_muscle and count_muscle > count_maintenace:
+        result = 'muscle mass gain'
+    elif count_weight < count_muscle and count_muscle < count_maintenace:
+        result = 'maintenance'
+    else:
+        result = 'weight loss, muscle mass gain and maintenance.'
+
+    return result
  
 recommendation = meal_plan(objective)
 macronutrient_distribution_info = macronutrient_distribution(objective)
 full_gender = 'Male' if gender == 'M' else 'Female'
 sheet = SHEET.sheet1  
-column_name = "gender_column_name"
-gender_result = count_gender(sheet ,column_name)
+column_name1 = "gender_column_name"
+column_name2 = "objective_column_name"
+gender_result = count_gender(sheet ,column_name1)
+objective_result = count_objective(sheet ,column_name2) 
    
 #display print statments 
 print(f'According to the given values:\n'
@@ -213,5 +235,5 @@ for key, value in macronutrient_distribution_info.items():
 print("Meal plan:")
 print(recommendation)
 print(f'According to the database:\n'
-      f'There are more {gender_result} looking for')
+      f'There are more {gender_result} looking for {objective_result}')
 update_your_health_worksheet(gender, age, objective)
