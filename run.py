@@ -164,6 +164,13 @@ def meal_plan(objective):
         return ('To gain muscle mass, experts recommend consuming a diet based on proteins."Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans, tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds."')
     else:
         return ('To maintain your weight, experts recommend consuming a balanced diet. “Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.')
+    
+def update_your_health_worksheet(gender, age, objective):
+    """
+    Update Your Health worksheet, add new row with the data provided
+    """
+    data_worksheet = SHEET.worksheet("data")
+    data_worksheet.append_row([gender, age, objective])
  
 recommendation = meal_plan(objective)
 macronutrient_distribution_info = macronutrient_distribution(objective)
@@ -175,3 +182,4 @@ for key, value in macronutrient_distribution_info.items():
     print(f"{key.capitalize()}: {value*100}%")
 print("Meal plan:")
 print(recommendation)
+update_your_health_worksheet(gender, age, objective)
