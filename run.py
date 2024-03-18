@@ -161,23 +161,47 @@ def meal_plan(objective):
                 'Low-fat dairy products, such as skimmed milk, low-fat yogurt and white cheeses\n'
                 'Vegetable drinks, such as soy, oat and rice drinks\n'
                 'Healthy fats in moderation, such as olive oil, Brazil nuts, almonds and walnuts\n'
-                'Legumes, such as beans, lentils, chickpeas and soybeans\n'
-                'Natural seasonings and condiments, such as rosemary, vinegar, parsley, black pepper and oregano.')
+                'Natural seasonings and condiments, such as rosemary, vinegar, parsley, black pepper and oregano.\n'
+                'And an exercise plan according to the objective.')
     elif objective == 'muscle mass gain':
-        return ('To gain muscle mass, experts recommend consuming a diet based on proteins."Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans, tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds."')
+        return ('To gain muscle mass, experts recommend consuming a diet based on proteins:\n'
+                '"Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans, tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds"\n'
+                'And an exercise plan according to the objective.')
     else:
-        return ('To maintain your weight, experts recommend consuming a balanced diet. “Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.')
+        return ('To maintain your weight, experts recommend consuming a balanced diet:\n'
+                '“Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.\n'
+                'And an exercise plan according to the objective.')
     
-def update_your_health_worksheet(gender, age, objective):
+def update_your_health_worksheet(gender_column_name, age_column_name, objective_column_name):
     """
     Update Your Health worksheet, add new row with the data provided
     """
     data_worksheet = SHEET.worksheet("data")
-    data_worksheet.append_row([gender, age, objective])
+    data_worksheet.append_row([gender_column_name, age_column_name, objective_column_name])
+
+def count_gender(sheet, column_name):
+    
+    column_data = sheet.col_values(sheet.find(column_name).col)
+
+
+    count_m = column_data.count('M')
+    count_f = column_data.count('F')
+
+    if count_m > count_f:
+        result = 'Men'
+    elif count_m < count_f:
+        result = 'Women'
+    else:
+        result = 'an equal number of men and women'
+
+    return result
  
 recommendation = meal_plan(objective)
 macronutrient_distribution_info = macronutrient_distribution(objective)
 full_gender = 'Male' if gender == 'M' else 'Female'
+sheet = SHEET.sheet1  
+column_name = "gender_column_name"
+gender_result = count_gender(sheet ,column_name)
    
 #display print statments 
 print(f'According to the given values:\n'
@@ -188,4 +212,6 @@ for key, value in macronutrient_distribution_info.items():
     print(f"{key.capitalize()}: {value*100}%")
 print("Meal plan:")
 print(recommendation)
+print(f'According to the database:\n'
+      f'There are more {gender_result} looking for')
 update_your_health_worksheet(gender, age, objective)
