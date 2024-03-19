@@ -162,15 +162,15 @@ def meal_plan(objective):
                 'Vegetable drinks, such as soy, oat and rice drinks\n'
                 'Healthy fats in moderation, such as olive oil, Brazil nuts, almonds and walnuts\n'
                 'Natural seasonings and condiments, such as rosemary, vinegar, parsley, black pepper and oregano.\n'
-                'And an exercise plan according to the objective.')
+                'And an exercise plan according to the objective.\n')
     elif objective == 'muscle mass gain':
         return ('To gain muscle mass, experts recommend consuming a diet based on proteins:\n'
                 '"Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans, tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds"\n'
-                'And an exercise plan according to the objective.')
+                'And an exercise plan according to the objective.\n')
     else:
         return ('To maintain your weight, experts recommend consuming a balanced diet:\n'
                 '“Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.\n'
-                'And an exercise plan according to the objective.')
+                'And an exercise plan according to the objective.\n')
     
 def update_your_health_worksheet(gender_column_name, age_column_name, objective_column_name):
     """
@@ -180,13 +180,17 @@ def update_your_health_worksheet(gender_column_name, age_column_name, objective_
     data_worksheet.append_row([gender_column_name, age_column_name, objective_column_name])
 
 def count_gender(sheet, column_name):
-    
+    """
+    Function to count occurrences of genders (M and F) in a specific column.
+    """
+    # Extract column data
     column_data = sheet.col_values(sheet.find(column_name).col)
 
-
+    # Count occurrences of 'M' and 'F'
     count_m = column_data.count('M')
     count_f = column_data.count('F')
 
+    # Determine the result based on counts
     if count_m > count_f:
         result = 'Men'
     elif count_m < count_f:
@@ -196,32 +200,38 @@ def count_gender(sheet, column_name):
 
     return result
 
+
 def count_objective(sheet, column_name):
-    
+    """
+    Function to count occurrences of objectives (weight loss, muscle mass gain, maintenance) in a specific column.
+    """
+    # Extract column data
     column_data = sheet.col_values(sheet.find(column_name).col)
 
-
+    # Count occurrences of different objectives
     count_weight = column_data.count('weight loss')
     count_muscle = column_data.count('muscle mass gain')
     count_maintenance = column_data.count('maintenance')
 
-    if count_weight > count_muscle and count_weight > count_maintenance :
-       result = 'weight loss'
+    # Determine the result based on counts
+    if count_weight > count_muscle and count_weight > count_maintenance:
+        result = 'weight loss'
     elif count_muscle > count_weight and count_muscle > count_maintenance:
-       result = 'muscle mass gain'
+        result = 'muscle mass gain'
     elif count_maintenance > count_weight and count_maintenance > count_muscle:
-       result = 'maintenance'
+        result = 'maintenance'
     elif count_weight == count_muscle and count_weight != count_maintenance:
-       result = 'weight loss and muscle mass gain'
+        result = 'weight loss and muscle mass gain'
     elif count_muscle == count_maintenance and count_muscle != count_weight:
-       result = 'muscle mass gain and maintenance'
+        result = 'muscle mass gain and maintenance'
     elif count_weight == count_maintenance and count_weight != count_muscle:
-       result = 'weight loss and maintenance'
+        result = 'weight loss and maintenance'
     else:
-       result = 'weight loss, muscle mass gain and maintenance.'
+        result = 'weight loss, muscle mass gain and maintenance.'
 
     return result
  
+update_your_health_worksheet(gender, age, objective)
 recommendation = meal_plan(objective)
 macronutrient_distribution_info = macronutrient_distribution(objective)
 full_gender = 'Male' if gender == 'M' else 'Female'
@@ -241,5 +251,5 @@ for key, value in macronutrient_distribution_info.items():
 print("Meal plan:")
 print(recommendation)
 print(f'According to the database:\n'
-      f'There are more {gender_result} looking for {objective_result}')
-update_your_health_worksheet(gender, age, objective)
+      f'There are more {gender_result} looking for {objective_result}.')
+
