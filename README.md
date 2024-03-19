@@ -75,3 +75,21 @@ Counts occurrences of objectives (weight loss, muscle mass gain, maintenance) in
 ## Function Testing Summary
 
 The table below summarizes the behavior of each function in the code and whether they passed or failed the tests:
+
+| Function                    | Behavior                                           | Pass/Fail |
+|-----------------------------|----------------------------------------------------|-----------|
+| calculate_caloric_needs    | Calculates caloric needs based on given parameters | Pass      |
+| macronutrient_distribution | Calculates macronutrient distribution              | Pass      |
+| validate_age                | Validates the user's age input                     | Pass      |
+| validate_weight             | Validates the user's weight input                  | Pass      |
+| validate_height             | Validates the user's height input                  | Pass      |
+| validate_gender             | Validates the user's gender input                  | Pass      |
+| validate_activity_level     | Validates the user's activity level input          | Pass      |
+| validate_objective          | Validates the user's goal input                    | Pass      |
+| meal_plan                   | Generates a meal plan based on the user's goal     | Pass      |
+| update_your_health_worksheet| Updates the Your Health worksheet with new data    | Pass      |
+| count_gender                | Counts occurrences of genders in a specific column  | Pass      |
+| count_objective             | Counts occurrences of objectives in a specific column | Pass      |
+| All functions tested        | All functions behave as expected                   | Pass      |
+
+This table provides a clear overview of each function's behavior and the outcome of the tests conducted.
