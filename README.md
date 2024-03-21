@@ -15,6 +15,7 @@ Before running the code, ensure you have the following dependencies installed:
 - [gspread](https://gspread.readthedocs.io/en/latest/)
 - [oauth2client](https://oauth2client.readthedocs.io/en/latest/)
 - [pprint](https://docs.python.org/3/library/pprint.html)
+- [colorama](https://pypi.org/project/colorama/)
 
 You also need to set up authentication with Google Sheets API and provide the necessary credentials (`creds.json`).
 
