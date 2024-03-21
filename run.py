@@ -123,29 +123,45 @@ def validate_activity_level(activity_level):
     """
     Function to validate activity level
     """
-    valid_levels = ['sedentary', 'light', 'moderate', 'active', 'very active']
-    if activity_level.lower() not in valid_levels:#check if the input is one of the given options
-        print(Fore.RED + "Invalid input for activity level. Please choose from: sedentary, light, moderate, active, very active.")
+    valid_levels = {
+        '1': 'sedentary',
+        '2': 'light',
+        '3': 'moderate',
+        '4': 'active',
+        '5': 'very active'
+    }
+
+    if activity_level not in valid_levels:
+        print(Fore.RED + "Invalid input for activity level. Please choose a number from 1 to 5.")
         return None
-    return activity_level.lower()
+
+    return valid_levels[activity_level]
 
 activity_level = None
 while activity_level is None:
-    activity_level = validate_activity_level(input(Fore.BLUE + "Enter your activity level (sedentary, light, moderate, active, very active):\n "))
+    activity_input = input(Fore.BLUE + "Enter the number corresponding to your activity level (1 for sedentary, 2 for light, 3 for moderate, 4 for active, 5 for very active):\n")
+    activity_level = validate_activity_level(activity_input)
 
 def validate_objective(objective):
     """
     Function to validate objective
     """
-    valid_objectives = ['weight loss', 'muscle mass gain', 'maintenance']
-    if objective.lower() not in valid_objectives:#check if the input is one of the given options
-        print(Fore.RED + "Invalid input for goal. Please choose from: weight loss, muscle mass gain, maintenance.")
+    valid_objectives = {
+        '1': 'weight loss',
+        '2': 'muscle mass gain',
+        '3': 'maintenance'
+    }
+
+    if objective not in valid_objectives:
+        print(Fore.RED + "Invalid input for goal. Please choose a number from 1 to 3.")
         return None
-    return objective.lower()
+
+    return valid_objectives[objective]
 
 objective = None
 while objective is None:
-    objective = validate_objective(input(Fore.BLUE + "Enter your goal (weight loss, muscle mass gain, maintenance):\n ").lower())
+    objective_input = input(Fore.BLUE + "Enter the number corresponding to your goal (1 for weight loss, 2 for muscle mass gain, 3 for maintenance):\n")
+    objective = validate_objective(objective_input)
 
 # Calculating calorie needs
 calorie_need = calculate_caloric_needs(age, weight, height, gender, activity_level)
