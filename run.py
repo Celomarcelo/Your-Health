@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
 from colorama import init, Fore, Style
+import os
 
 init(autoreset=True)
 
@@ -221,6 +222,10 @@ def count_objective(sheet, column_name):
 
     return result
 
+def clear_terminal():
+    """Clears the terminal screen."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 age = None
 while age is None:
     age = validate_age(input(Fore.BLUE + "Enter your age:\n "))
@@ -261,6 +266,9 @@ gender_result = count_gender(sheet ,column_name1)
 objective_result = count_objective(sheet ,column_name2) 
 diet_plan_color = Fore.BLUE
 print_stat_color = Fore.YELLOW 
+
+clear_terminal()
+
 #display print statments 
 print(Fore.YELLOW + 'According to the given values:\n'
       f'Age: {diet_plan_color}{age} ' 
