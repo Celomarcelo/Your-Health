@@ -67,10 +67,6 @@ def validate_age(age):
     except ValueError:
         print(Fore.RED + "Invalid input for age. Please enter a valid integer between 15 and 120.")
         return None
-
-age = None
-while age is None:
-    age = validate_age(input(Fore.BLUE + "Enter your age:\n "))
     
 def validate_weight(weight):
     """
@@ -85,10 +81,6 @@ def validate_weight(weight):
         print(Fore.RED + "Invalid input for weight. Please enter a valid number between 30 and 200.")
         return None
 
-weight = None
-while weight is None:
-    weight = validate_weight(input(Fore.BLUE + "Enter your weight in kg:\n "))
-
 def validate_height(height):
     """
     Function to validate height
@@ -102,10 +94,6 @@ def validate_height(height):
         print(Fore.RED + "Invalid input for height. Please enter a valid number.")
         return None
 
-height = None
-while height is None:
-    height = validate_height(input(Fore.BLUE + "Enter your height in meters:\n "))
-
 def validate_gender(gender):
     """
     Function to validate gender
@@ -114,10 +102,6 @@ def validate_gender(gender):
         print(Fore.RED + "Invalid input for gender. Please enter 'M' for male or 'F' for female.")
         return None
     return gender.upper()
-
-gender = None
-while gender is None:
-    gender = validate_gender(input(Fore.BLUE + "Enter 'M' for male or 'F' for female:\n ").upper())
 
 def validate_activity_level(activity_level):
     """
@@ -137,11 +121,6 @@ def validate_activity_level(activity_level):
 
     return valid_levels[activity_level]
 
-activity_level = None
-while activity_level is None:
-    activity_input = input(Fore.BLUE + "Enter the number corresponding to your activity level (1 for sedentary, 2 for light, 3 for moderate, 4 for active, 5 for very active):\n")
-    activity_level = validate_activity_level(activity_input)
-
 def validate_objective(objective):
     """
     Function to validate objective
@@ -157,14 +136,6 @@ def validate_objective(objective):
         return None
 
     return valid_objectives[objective]
-
-objective = None
-while objective is None:
-    objective_input = input(Fore.BLUE + "Enter the number corresponding to your goal (1 for weight loss, 2 for muscle mass gain, 3 for maintenance):\n")
-    objective = validate_objective(objective_input)
-
-# Calculating calorie needs
-calorie_need = calculate_caloric_needs(age, weight, height, gender, activity_level)
 
 def meal_plan(objective):
     """
@@ -249,7 +220,36 @@ def count_objective(sheet, column_name):
         result = 'weight loss, muscle mass gain and maintenance.'
 
     return result
- 
+
+age = None
+while age is None:
+    age = validate_age(input(Fore.BLUE + "Enter your age:\n "))
+
+weight = None
+while weight is None:
+    weight = validate_weight(input(Fore.BLUE + "Enter your weight in kg:\n "))
+
+height = None
+while height is None:
+    height = validate_height(input(Fore.BLUE + "Enter your height in meters:\n "))
+    
+gender = None
+while gender is None:
+    gender = validate_gender(input(Fore.BLUE + "Enter 'M' for male or 'F' for female:\n ").upper())
+    
+activity_level = None
+while activity_level is None:
+    activity_input = input(Fore.BLUE + "Enter the number corresponding to your activity level (1 for sedentary, 2 for light, 3 for moderate, 4 for active, 5 for very active):\n ")
+    activity_level = validate_activity_level(activity_input)
+    
+objective = None
+while objective is None:
+    objective_input = input(Fore.BLUE + "Enter the number corresponding to your goal (1 for weight loss, 2 for muscle mass gain, 3 for maintenance):\n ")
+    objective = validate_objective(objective_input)
+
+# Calculating calorie needs
+calorie_need = calculate_caloric_needs(age, weight, height, gender, activity_level)
+
 update_your_health_worksheet(gender, age, objective)
 recommendation = meal_plan(objective)
 macronutrient_distribution_info = macronutrient_distribution(objective)
