@@ -97,6 +97,12 @@ The table below summarizes the behavior of each function in the code and whether
 
 This table provides a clear overview of each function's behavior and the outcome of the tests conducted.
 
+## Issues
+
+During the project I had some difficulties with functions that did not work correctly
+This was fixed by changing the scope of the variables.
+The "$" symbol shown in the Heroku template is not written in the code.
+
 ## Future Functionality
 
 Below are potential features that could be implemented in future updates of the code:
