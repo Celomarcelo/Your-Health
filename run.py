@@ -10,7 +10,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -25,10 +25,11 @@ def calculate_caloric_needs(age, weight, height, gender, activity_level):
     # Calculate calorie needs based on gender and activity level
 
     if gender == 'M':
-        calorie_need = 66.47 + (13.75 * weight) + (5.00 * height) - (6.76 * age)
+        calorie_need = 66.47 + (13.75 * weight) + \
+            (5.00 * height) - (6.76 * age)
     else:
         calorie_need = 655.1 + (9.56 * weight) + (1.85 * height) - (4.68 * age)
-    
+
     if activity_level == 'sedentary':
         calorie_need *= 1.2
     elif activity_level == 'light':
@@ -39,8 +40,9 @@ def calculate_caloric_needs(age, weight, height, gender, activity_level):
         calorie_need *= 1.725
     else:
         calorie_need *= 1.9
-    
+
     return calorie_need
+
 
 def macronutrient_distribution(objective):
     """
@@ -51,7 +53,8 @@ def macronutrient_distribution(objective):
     elif objective == 'muscle mass gain':
         return {'proteins': 0.4, 'carbohydrates': 0.4, 'fats': 0.2}
     else:
-        return {'proteins': 0.3, 'carbohydrates': 0.5, 'fats': 0.2,}
+        return {'proteins': 0.3, 'carbohydrates': 0.5, 'fats': 0.2}
+
 
 # Collecting user information
 def validate_age(age):
@@ -60,25 +63,27 @@ def validate_age(age):
     """
     try:
         age = int(age)
-        if not (15 <= age <= 120):#check if the input is a number and a rational value
+        if not (15 <= age <= 120):  # check if the input is a number and a rational value
             raise ValueError(Fore.RED + "Age must be a positive integer.")
         return age
     except ValueError:
         print(Fore.RED + "Invalid input for age. Please enter a valid integer between 15 and 120.")
         return None
-    
+
+
 def validate_weight(weight):
     """
     Function to validate weight
     """
     try:
         weight = float(weight)
-        if not (30 <= weight <= 200):#check if the input is a number and a rational value
+        if not (30 <= weight <= 200):  # check if the input is a number and a rational value
             raise ValueError(Fore.RED + "Weight must be a positive number.")
         return weight
     except ValueError:
         print(Fore.RED + "Invalid input for weight. Please enter a valid number between 30 and 200.")
         return None
+
 
 def validate_height(height):
     """
@@ -86,21 +91,25 @@ def validate_height(height):
     """
     try:
         height = float(height.replace(',', '.'))
-        if not (1 <= height <= 2.5): #check if the input is a number and a rational value, convert characters
-            raise ValueError(Fore.RED + "Height must be a positive number between 1 and 2.5.")
+        # check if the input is a number and a rational value, convert characters
+        if not (1 <= height <= 2.5):
+            raise ValueError(
+                Fore.RED + "Height must be a positive number between 1 and 2.5.")
         return height
     except ValueError:
         print(Fore.RED + "Invalid input for height. Please enter a valid number.")
         return None
 
+
 def validate_gender(gender):
     """
     Function to validate gender
     """
-    if gender.upper() not in ['M', 'F']:#check if the input is one of the given options
+    if gender.upper() not in ['M', 'F']:  # check if the input is one of the given options
         print(Fore.RED + "Invalid input for gender. Please enter 'M' for male or 'F' for female.")
         return None
     return gender.upper()
+
 
 def validate_activity_level(activity_level):
     """
@@ -120,6 +129,7 @@ def validate_activity_level(activity_level):
 
     return valid_levels[activity_level]
 
+
 def validate_objective(objective):
     """
     Function to validate objective
@@ -135,6 +145,7 @@ def validate_objective(objective):
         return None
 
     return valid_objectives[objective]
+
 
 def meal_plan(objective):
     """
@@ -160,13 +171,16 @@ def meal_plan(objective):
         return ('To maintain your weight, experts recommend consuming a balanced diet:\n'
                 '“Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.\n'
                 'And an exercise plan according to the objective.\n')
-    
+
+
 def update_your_health_worksheet(gender_column_name, age_column_name, objective_column_name):
     """
     Update Your Health worksheet, add new row with the data provided
     """
     data_worksheet = SHEET.worksheet("data")
-    data_worksheet.append_row([gender_column_name, age_column_name, objective_column_name])
+    data_worksheet.append_row(
+        [gender_column_name, age_column_name, objective_column_name])
+
 
 def count_gender(sheet, column_name):
     """
@@ -220,13 +234,15 @@ def count_objective(sheet, column_name):
 
     return result
 
+
 def clear_terminal():
     """Clears the terminal screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 print(Fore.CYAN + 'Your health\n'
-          'Calculate your diet according to your goal.\n'
-          'This program is to assist users in determining their dietary needs based on various factors such as age, weight, height, gender, and activity level.')
+      'Calculate your diet according to your goal.\n'
+      'This program is to assist users in determining their dietary needs based on various factors such as age, weight, height, gender, and activity level.')
 
 age = None
 while age is None:
@@ -238,42 +254,47 @@ while weight is None:
 
 height = None
 while height is None:
-    height = validate_height(input(Fore.BLUE + "Enter your height in meters:\n "))
-    
+    height = validate_height(
+        input(Fore.BLUE + "Enter your height in meters:\n "))
+
 gender = None
 while gender is None:
-    gender = validate_gender(input(Fore.BLUE + "Enter 'M' for male or 'F' for female:\n ").upper())
-    
+    gender = validate_gender(
+        input(Fore.BLUE + "Enter 'M' for male or 'F' for female:\n ").upper())
+
 activity_level = None
 while activity_level is None:
-    activity_input = input(Fore.BLUE + "Enter the number corresponding to your activity level (1 for sedentary, 2 for light, 3 for moderate, 4 for active, 5 for very active):\n ")
+    activity_input = input(
+        Fore.BLUE + "Enter the number corresponding to your activity level (1 for sedentary, 2 for light, 3 for moderate, 4 for active, 5 for very active):\n ")
     activity_level = validate_activity_level(activity_input)
-    
+
 objective = None
 while objective is None:
-    objective_input = input(Fore.BLUE + "Enter the number corresponding to your goal (1 for weight loss, 2 for muscle mass gain, 3 for maintenance):\n ")
+    objective_input = input(
+        Fore.BLUE + "Enter the number corresponding to your goal (1 for weight loss, 2 for muscle mass gain, 3 for maintenance):\n ")
     objective = validate_objective(objective_input)
 
 # Calculating calorie needs
-calorie_need = calculate_caloric_needs(age, weight, height, gender, activity_level)
+calorie_need = calculate_caloric_needs(
+    age, weight, height, gender, activity_level)
 
 update_your_health_worksheet(gender, age, objective)
 recommendation = meal_plan(objective)
 macronutrient_distribution_info = macronutrient_distribution(objective)
 full_gender = 'Male' if gender == 'M' else 'Female'
-sheet = SHEET.sheet1  
+sheet = SHEET.sheet1
 column_name1 = "gender_column_name"
 column_name2 = "objective_column_name"
-gender_result = count_gender(sheet ,column_name1)
-objective_result = count_objective(sheet ,column_name2) 
+gender_result = count_gender(sheet, column_name1)
+objective_result = count_objective(sheet, column_name2)
 diet_plan_color = Fore.BLUE
-print_stat_color = Fore.YELLOW 
+print_stat_color = Fore.YELLOW
 
 clear_terminal()
 
-#display print statments 
+# display print statments
 print(Fore.YELLOW + 'According to the given values:\n'
-      f'Age: {diet_plan_color}{age} ' 
+      f'Age: {diet_plan_color}{age} '
       f'{print_stat_color}Weight: {diet_plan_color}{weight} '
       f'{print_stat_color}Height: {diet_plan_color}{height} '
       f'{print_stat_color}Gender: {diet_plan_color}{full_gender}'
@@ -289,4 +310,3 @@ print(recommendation)
 
 print(Fore.MAGENTA + 'According to the database:\n'
       f'There are more {gender_result} looking for {objective_result}.')
-
