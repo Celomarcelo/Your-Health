@@ -17,8 +17,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('your-health-data')
 
-print(Fore.CYAN + 'Your health\n'
-          'Calculate your diet according to your goal.')
 
 def calculate_caloric_needs(age, weight, height, gender, activity_level):
     """
@@ -53,7 +51,7 @@ def macronutrient_distribution(objective):
     elif objective == 'muscle mass gain':
         return {'proteins': 0.4, 'carbohydrates': 0.4, 'fats': 0.2}
     else:
-        return {'proteins': 0.3, 'carbohydrates': 0.5, 'fats': 0.2}
+        return {'proteins': 0.3, 'carbohydrates': 0.5, 'fats': 0.2,}
 
 # Collecting user information
 def validate_age(age):
@@ -226,6 +224,10 @@ def clear_terminal():
     """Clears the terminal screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
+print(Fore.CYAN + 'Your health\n'
+          'Calculate your diet according to your goal.\n'
+          'This program is to assist users in determining their dietary needs based on various factors such as age, weight, height, gender, and activity level.')
+
 age = None
 while age is None:
     age = validate_age(input(Fore.BLUE + "Enter your age:\n "))
@@ -274,14 +276,17 @@ print(Fore.YELLOW + 'According to the given values:\n'
       f'Age: {diet_plan_color}{age} ' 
       f'{print_stat_color}Weight: {diet_plan_color}{weight} '
       f'{print_stat_color}Height: {diet_plan_color}{height} '
-      f'{print_stat_color}Gender: {diet_plan_color}{full_gender} '
+      f'{print_stat_color}Gender: {diet_plan_color}{full_gender}'
       f'{print_stat_color}Activity level: {diet_plan_color}{activity_level}' + Style.RESET_ALL)
-print(Fore.LIGHTYELLOW_EX + "Diet plan:")
+
+print(Fore.MAGENTA + "Diet plan:")
 print(f"Daily caloric needs: {calorie_need:.3f} cal")
 for key, value in macronutrient_distribution_info.items():
     print(f"{key.capitalize()}: {value*100}%")
-print(Fore.LIGHTYELLOW_EX + "Meal plan:")
+print('\n')
+print(Fore.MAGENTA + "Meal plan:")
 print(recommendation)
+
 print(Fore.MAGENTA + 'According to the database:\n'
       f'There are more {gender_result} looking for {objective_result}.')
 
