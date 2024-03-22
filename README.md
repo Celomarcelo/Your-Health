@@ -114,3 +114,10 @@ Below are potential features that could be implemented in future updates of the 
 - **Feedback System:** Incorporate a feedback system to gather user feedback and suggestions for improving the application.
 
 These are just a few ideas for potential enhancements to the codebase that could improve the user experience and functionality of the application.
+
+## Contributing
+
+The template models were taken from the Love Sandwiches project by Code Institute.
+
+The codes to access Google Spreadsheets were made according to the content of the course and the Code Institute's Love Sandwiches project
+
