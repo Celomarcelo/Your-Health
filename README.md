@@ -8,6 +8,8 @@ Calculate your diet according to your goal.
 
 This project aims to assist users in determining their dietary needs based on various factors such as age, weight, height, gender, and activity level. It provides functions to calculate caloric needs, determine macronutrient distribution, validate user inputs, generate meal plans, and analyze data from a Google Sheets document.
 
+![INPUTS](./static/images/inputsscreen.png)
+
 ## Prerequisites
 
 Before running the code, ensure you have the following dependencies installed:
@@ -26,6 +28,8 @@ You also need to set up authentication with Google Sheets API and provide the ne
 3. The script will calculate your daily caloric needs, display macronutrient distribution, suggest a meal plan based on your goal, and provide insights based on data analysis.
 
 ## Functions
+
+![FUNCTIONS](./static/images/inputsscreen2.png)
 
 ### `calculate_caloric_needs(age, weight, height, gender, activity_level)`
 
@@ -64,6 +68,8 @@ Validates the user's goal input.
 Generates a meal plan based on the user's goal.
 
 ### `update_your_health_worksheet(gender_column_name, age_column_name, objective_column_name)`
+
+![SPREADSHEET](./static/images/spreadsheet.png)
 
 Updates the Your Health worksheet with new user data.
 
