@@ -2,6 +2,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
 from colorama import init, Fore, Style
+from termcolor import colored
+
 import os
 
 init(autoreset=True)
@@ -242,10 +244,10 @@ def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-print('\033[36mYour health\n'
+print(colored('Your health\n'
       'Calculate your diet according to your goal.\n'
       'This program is to assist users in determining their dietary needs.'
-      'Based on various factors such as age, weight, height, gender, and activity level.\033[0m')
+      'Based on various factors such as age, weight, height, gender, and activity level.','cyan'))
 
 age = None
 while age is None:
