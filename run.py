@@ -249,6 +249,7 @@ red = fg('red')
 yellow_bg = bg('yellow')
 reset = attr('reset')
 
+print(fg(4) + 'hi.' + attr(0))
 print(green + 'Hello' + reset)
 print(colored('Your health\n'
       'Calculate your diet according to your goal.\n'
