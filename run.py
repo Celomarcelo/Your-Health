@@ -3,6 +3,7 @@ from google.oauth2.service_account import Credentials
 from pprint import pprint
 from colorama import init, Fore, Style
 from termcolor import colored
+from colored import fg, bg, attr
 
 import os
 
@@ -243,7 +244,12 @@ def clear_terminal():
     """Clears the terminal screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
+green = fg('green')
+red = fg('red')
+yellow_bg = bg('yellow')
+reset = attr('reset')
 
+print(green + 'Hello' + reset)
 print(colored('Your health\n'
       'Calculate your diet according to your goal.\n'
       'This program is to assist users in determining their dietary needs.'
@@ -251,7 +257,7 @@ print(colored('Your health\n'
 
 age = None
 while age is None:
-    age = validate_age(input(Fore.BLUE + "Enter your age:\n "))
+    age = validate_age(input(colored("Enter your age:\n ",'cyan')))
 
 weight = None
 while weight is None:
