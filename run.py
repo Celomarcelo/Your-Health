@@ -242,10 +242,10 @@ def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-print(Fore.CYAN + 'Your health\n'
+print('\033[36mYour health\n'
       'Calculate your diet according to your goal.\n'
       'This program is to assist users in determining their dietary needs.'
-      'Based on various factors such as age, weight, height, gender, and activity level.')
+      'Based on various factors such as age, weight, height, gender, and activity level.\033[0m')
 
 age = None
 while age is None:
