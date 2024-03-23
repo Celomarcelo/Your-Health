@@ -63,7 +63,7 @@ def validate_age(age):
     """
     try:
         age = int(age)
-        if not (15 <= age <= 120):  # check if the input is a number and a rational value
+        if not (15 <= age <= 120):  # check if input is a number and rational value
             raise ValueError(Fore.RED + "Age must be a positive integer.")
         return age
     except ValueError:
@@ -154,22 +154,24 @@ def meal_plan(objective):
     # Generate meal plan based on the objective
     if objective == 'weight loss':
         return ('To lose weight, you can follow a diet based on:\n'
-                'Low-calorie fruits, such as strawberries, tangerines, kiwi, pears, apples, plum melons, watermelons, oranges and pineapple\n'
-                'Vegetables, such as zucchini, cucumber, lettuce, tomato, cabbage, kale, broccoli and cauliflower\n'
+                'Low-calorie fruits, such as strawberries, tangerines, kiwi, oranges and pineapple\n'
+                'Vegetables, such as zucchini, cucumber, kale, broccoli and cauliflower\n'
                 'Whole grains, such as brown rice, whole wheat pasta, whole grain bread and oats\n'
                 'Lean proteins, such as chicken, fish, seafood, eggs and tofu\n'
                 'Low-fat dairy products, such as skimmed milk, low-fat yogurt and white cheeses\n'
                 'Vegetable drinks, such as soy, oat and rice drinks\n'
                 'Healthy fats in moderation, such as olive oil, Brazil nuts, almonds and walnuts\n'
-                'Natural seasonings and condiments, such as rosemary, vinegar, parsley, black pepper and oregano.\n'
+                'Natural seasonings and condiments, rosemary, vinegar, parsley, black pepper and oregano.\n'
                 'And an exercise plan according to the objective.\n')
     elif objective == 'muscle mass gain':
         return ('To gain muscle mass, experts recommend consuming a diet based on proteins:\n'
-                '"Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans, tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds"\n'
+                '"Chicken, red meat, salmon, eggs, tuna, cheese, milk, peanuts, avocado, beans,'
+                'tofu, lentils, amaranth, buckwheat, turkey, sunflower seeds"\n'
                 'And an exercise plan according to the objective.\n')
     else:
         return ('To maintain your weight, experts recommend consuming a balanced diet:\n'
-                '“Eat a variety of healthy foods, including fruits, vegetables, lean proteins, whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.\n'
+                '“Eat a variety of healthy foods, including fruits, vegetables, lean proteins,'
+                'whole grains and healthy fats. Avoid processed foods, high in sugar and saturated fats.\n'
                 'And an exercise plan according to the objective.\n')
 
 
@@ -206,7 +208,7 @@ def count_gender(sheet, column_name):
 
 def count_objective(sheet, column_name):
     """
-    Function to count occurrences of objectives (weight loss, muscle mass gain, maintenance) in a specific column.
+    Function to count occurrences of objectives
     """
     # Extract column data
     column_data = sheet.col_values(sheet.find(column_name).col)
@@ -242,7 +244,8 @@ def clear_terminal():
 
 print(Fore.CYAN + 'Your health\n'
       'Calculate your diet according to your goal.\n'
-      'This program is to assist users in determining their dietary needs based on various factors such as age, weight, height, gender, and activity level.')
+      'This program is to assist users in determining their dietary needs.'
+      'Based on various factors such as age, weight, height, gender, and activity level.')
 
 age = None
 while age is None:
@@ -265,13 +268,15 @@ while gender is None:
 activity_level = None
 while activity_level is None:
     activity_input = input(
-        Fore.BLUE + "Enter the number corresponding to your activity level (1 for sedentary, 2 for light, 3 for moderate, 4 for active, 5 for very active):\n ")
+        Fore.BLUE + "Enter the number corresponding to your activity level:"
+        "(1 for sedentary, 2 for light, 3 for moderate, 4 for active, 5 for very active):\n ")
     activity_level = validate_activity_level(activity_input)
 
 objective = None
 while objective is None:
     objective_input = input(
-        Fore.BLUE + "Enter the number corresponding to your goal (1 for weight loss, 2 for muscle mass gain, 3 for maintenance):\n ")
+        Fore.BLUE + "Enter the number corresponding to your goal:"
+        "(1 for weight loss, 2 for muscle mass gain, 3 for maintenance):\n ")
     objective = validate_objective(objective_input)
 
 # Calculating calorie needs
@@ -291,22 +296,25 @@ diet_plan_color = Fore.BLUE
 print_stat_color = Fore.YELLOW
 
 clear_terminal()
+init()
 
-# display print statments
-print(Fore.YELLOW + 'According to the given values:\n'
-      f'Age: {diet_plan_color}{age} '
+diet_plan_color = '\033[32m'  # green
+print_stat_color = '\033[34m'  # blue
+
+print('\033[33m' + 'According to the given values:\n'
+      f'{print_stat_color}Age: {diet_plan_color}{age} '
       f'{print_stat_color}Weight: {diet_plan_color}{weight} '
       f'{print_stat_color}Height: {diet_plan_color}{height} '
-      f'{print_stat_color}Gender: {diet_plan_color}{full_gender}'
+      f'{print_stat_color}Gender: {diet_plan_color}{full_gender} '
       f'{print_stat_color}Activity level: {diet_plan_color}{activity_level}' + Style.RESET_ALL)
 
-print(Fore.MAGENTA + "Diet plan:")
+print('\033[35m' + "Diet plan:")
 print(f"Daily caloric needs: {calorie_need:.3f} cal")
 for key, value in macronutrient_distribution_info.items():
     print(f"{key.capitalize()}: {value*100}%")
 print('\n')
-print(Fore.MAGENTA + "Meal plan:")
+print('\033[35m' + "Meal plan:")
 print(recommendation)
 
-print(Fore.MAGENTA + 'According to the database:\n'
-      f'There are more {gender_result} looking for {objective_result}.')
+print('\033[35m' + 'According to the database:\n'
+      f'There are more {gender_result} looking for {objective_result}.' + Style.RESET_ALL)
