@@ -297,7 +297,7 @@ print(Fore.YELLOW + 'According to the given values:\n'
       f'Age: {diet_plan_color}{age} '
       f'{print_stat_color}Weight: {diet_plan_color}{weight} '
       f'{print_stat_color}Height: {diet_plan_color}{height} '
-      f'{print_stat_color}Gender: {diet_plan_color}{full_gender}'
+      f'{print_stat_color}Gender: {diet_plan_color}{full_gender} '
       f'{print_stat_color}Activity level: {diet_plan_color}{activity_level}' + Style.RESET_ALL)
 
 print('\n')
