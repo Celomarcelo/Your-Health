@@ -109,6 +109,10 @@ During the project I had some difficulties with functions that did not work corr
 This was fixed by changing the scope of the variables.
 The "$" symbol shown in the Heroku template is not written in the code.
 
+## Unresolved problems
+
+After some mentoring, I was advised to use a library to color the text, but this did not happen with the text in the mock up, a lot of research was done on the internet and including a tutoring where we tried to use different libraries and different versions of the programs, none of which attempted to solve the defect worked, not even the tutoring was able to help with the resolution.
+
 ## Future Functionality
 
 Below are potential features that could be implemented in future updates of the code:
