@@ -75,6 +75,7 @@
 .xterm .composition-view {
     /* TODO: Composition position got messed up somewhere */
     background: #000;
+    color: white;
     display: none;
     position: absolute;
     white-space: nowrap;
